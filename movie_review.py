@@ -12,8 +12,7 @@ def get_movies_from_tastedive(movie_title, num_recs):
     search["type"] = "movies"
     search["limit"] = num_recs
     data = requests.get("https://tastedive.com/api/similar", params = search)
-    #parsed = json.loads(data.text)
-    #print(json.dumps(parsed, indent=4))
+    #print(json.dumps(data.json(), indent=4))
     return data.json()
 
 #extracts the movie titles from the json data
@@ -41,8 +40,7 @@ def get_related_titles(movie_titles, num_recs):
 def get_movie_data(movie_title):
     search_param = {"apikey": secrets.api_key, "t": movie_title, "r": "json"}
     data = requests.get("http://www.omdbapi.com/", params = search_param)
-    #parsed = json.loads(data.text)
-    #print(json.dumps(parsed, indent=4))
+    #print(json.dumps(data.json(), indent=4))
     return data.json()
 
 #extracts the movies ratings, scales each rating to be out of 100 and returns the average rating
